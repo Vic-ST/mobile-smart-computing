@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div>
+    <div data-role="header">
+      Converting fluid measurements
+    </div>
+
+    <div data-role="content">
+      <label for="gallons">Enter the quantity in gallons</label>
+      <input type="text" id="gallons" value="" placeholder="gallons" />
+
+
+    </div>
+
+    <div data-role="content">
+      <button data-corners="false">Display</button>
+
+    </div>
+
+    <div data-role="content">
+      <p id="result"></p>
+
+    </div>
+
+    
+  </div>
+
+  <div data-role="footer">
+    Fluid quantity converter
+
+  </div>
+  
+</body>
+
+<script>
+  $("button").click(function() {
+    var gallons = $("#gallons").val();
+    if(gallons === "") {
+      alert("Please enter a value");
+      return;
+    }
+    $("#result").html(gallons +" gallons");
+  });
+</script>
+
+</html>

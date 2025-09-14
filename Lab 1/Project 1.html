@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table{
+      width: 50%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #a7a7a7;
+    }
+
+    tr {
+      cursor: pointer;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fbe4e4;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Binary Logic Operators</h1>
+
+  <ol>
+    <li><a href="#AND">AND</a></li>
+    <li><a href="#OR">OR</a></li>
+    <li><a href="#NOT">NOT</a></li>
+    <li><a href="#XOR">XOR</a></li>
+    <li><a href="#NAND">NAND</a></li>
+    <li><a href="#NOR">NOR</a></li>
+    <li><a href="#XNOR">XNOR</a></li>
+  </ol>
+
+  <h3 id="AND">AND</h3>
+  <p>The AND operator returns true if both operands are true. Otherwise, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A AND B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+
+  </table>
+
+  <h3 id="OR">OR</h3>
+
+  <p>The OR operator returns true if at least one of the operands is true. If both operands are false, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A OR B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </table>
+
+  <h3 id="NOT">NOT</h3>
+  <p>The NOT operator inverts the value of its operand. If the operand is true, it returns false, and if the operand is false, it returns true.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>NOT A</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </table>
+
+  <h3 id="XOR">XOR</h3>
+  <p>The XOR (exclusive OR) operator returns true if exactly one of the operands is true. If both operands are false or both are true, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A XOR B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </table>
+
+  <h3 id="NAND">NAND</h3>
+  <p>The NAND operator is the negation of the AND operator. It returns true if at least one of the operands is false. If both operands are true, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A NAND B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </table>
+
+  <h3 id="NOR">NOR</h3>
+  <p>The NOR operator is the negation of the OR operator. It returns true if both operands are false. If at least one operand is true, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A NOR B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </table>
+
+  <h3 id="XNOR">XNOR</h3>
+  <p>The XNOR (exclusive NOR) operator is the negation of the XOR operator. It returns true if both operands are the same (both true or both false). If one operand is true and the other is false, it returns false.</p>
+  <table border="1">
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A XNOR B</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+
+  </table>
+</body>
+</html>

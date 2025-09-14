@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+   
+
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#info" id="infoShow" class="ui-btn-active">Information</a></li>
+          <li><a href="#converter" id="converterShow">Interface</a></li>
+        </ul>
+  
+      </div>
+
+
+    <div id="converter">
+      <div data-role="header">
+        Converting fluid measurements
+      </div>
+  
+      <div data-role="content">
+        <input type="text" id="gallons" value="" min="0" max="4000" />
+        <label for="gallons" id="unitText"></label>
+  
+  
+      </div>
+  
+      
+
+      <div data-role="content">
+        Convert to
+          <label>
+            <input type="radio" name="unit" value="gallons" data-role="button"> Gallons
+
+          </label>
+          <label>
+            <input type="radio" name="unit" value="litres" data-role="button"> Litres
+
+          </label>
+
+      </div>
+
+      <div data-role="content">
+        <button data-corners="false">Convert</button>
+  
+      </div>
+  
+      <div data-role="content">
+        <p id="result"></p>
+  
+      </div>
+  
+      <div data-role="footer">
+        Fluid quantity converter
+    
+      </div>
+    </div>
+
+    <div id="info">
+      <div data-role="content">
+        <h1>Fluid Unit Conversion</h1>
+        <p>There are primarily two methods for measuring volume of fluids.</p>
+        <ul>
+          <li>The imperial system with units such as gallons</li>
+          <li>The metric system with units such as liters</li>
+        </ul>
+        <p>This app allows you to convert from gallons to litres using the following forumla: <br> litre = gallon/3.789</p>
+      </div>
+    </div>
+    
+
+    
+
+
+
+  
+</body>
+
+<script>
+  $("button").click(function() {
+    var gallons = $("#gallons").val();
+    if(gallons === "") {
+      alert("Please enter a value");
+      return;
+    }
+
+    if(!$("input[name='unit']:checked").val()) {
+      alert("Please select a unit");
+      return;
+    }
+
+    if(typeof gallons !== "number") {
+      gallons = parseFloat(gallons);
+      if(isNaN(gallons)) {
+        alert("Please enter a valid number");
+        return;
+      }
+    }
+    
+    if($("input[name='unit']:checked").val() === "litres") {
+      gallons = (gallons * 3.789).toFixed(2) + " gallons";
+    } else {
+      gallons = (gallons / 3.789).toFixed(2) + " litres";
+
+    }
+    $("#result").html(gallons);
+  });
+
+
+
+  $("input[name='unit']").change(function() {
+    $("#unitText").html("Enter the quantity in " + ( $("input[name='unit']:checked").val() === "litres" ? "gallons" : "litres")).val();
+  });
+
+  $("#info").show();
+  $("#converter").hide();
+
+  $("#infoShow").click(function() {
+    $("#info").show();
+    $("infoShow").addClass("ui-btn-active");
+    $("converterShow").removeClass("ui-btn-active");
+    $("#converter").hide();
+  });
+
+  $("#converterShow").click(function() {
+    $("#info").hide();
+    $("converterShow").addClass("ui-btn-active");
+    $("infoShow").removeClass("ui-btn-active");
+    
+    $("#converter").show();
+  });
+</script>
+
+</html>
