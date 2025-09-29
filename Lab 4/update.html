@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Add new data</h1>
+
+  <form id="dataForm">
+    <label for="date">
+      Date:
+      <input type="date" id="date" name="date" />
+    </label>
+
+    <label for="height">
+      Power Consumed (W)
+      <input type="number" id="power" name="power" step="0.1" />
+    </label>
+
+    <input type="submit" value="Create New Entry" />
+  </form>
+
+
+  </main>
+
+
+  
+</body>
+</html>
