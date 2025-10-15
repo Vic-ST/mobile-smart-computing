@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+      <li> <span onclick="localStorage.setItem('authenticated', 'false'); window.location.href='./index.html';">Log Out</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Plant Information System</h1>
+
+  <p>Welcome to the Plant Information System. Use the navigation menu to access different features such as updating data, visualizing plant growth, and getting care recommendations.</p>
+
+  <p>Plant ID: <b id="plant_id">113_B_1</b></p> 
+  <p>Installation Date: <b id="install_date">09/29/2025</b></p> 
+
+  <hr>
+
+  <div>
+    Change the password:
+    <input type="password" id="newPwd" name="newPwd" />
+    <input type="submit" value="Submit" />
+  </div>
+
+  </main>
+
+
+  
+</body>
+<script>
+  document.querySelector('input[type="submit"]').onclick = () => {
+    const newPwd = document.getElementById('newPwd').value;
+    if(newPwd.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
+    localStorage.setItem("password", newPwd);
+    alert("Password changed successfully.");
+  };
+
+  window.onload = () => {
+    if(localStorage.getItem("authenticated") !== "true") {
+      window.location.href = "./index.html";
+    }
+    const plantID = localStorage.getItem("plantID") || "113_B_1";
+    const installDate = localStorage.getItem("installDate") || "09/29/2025";
+    document.getElementById("plant_id").innerText = plantID;
+    document.getElementById("install_date").innerText = installDate;
+  }
+</script>
+</html>

@@ -1,0 +1,45 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#headerNav {
+  background-color: #929292;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+#headerNav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+#headerNav li {
+  list-style-type: none;
+  display: inline;
+  border-radius: 5px;
+  padding:10px;
+}
+
+#headerNav li:hover {
+  background-color: #777777;
+  transition: background-color 0.3s;
+}
+
+.main-page {
+  padding: 20px;
+}
+
+#settingsForm {
+  display:flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: left;
+  gap:20px;
+}

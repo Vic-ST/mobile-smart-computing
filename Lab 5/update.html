@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  window.onload = () => {
+    if(localStorage.getItem("authenticated") !== "true") {
+      window.location.href = "./index.html";
+    }
+    if(localStorage.getItem('dataEntries') != null && localStorage.getItem('dataEntries') !== '') {
+      console.log(localStorage.getItem('dataEntries'));
+      updateTable();
+    }
+  }
+</script>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+      <li> <span onclick="localStorage.setItem('authenticated', 'false'); window.location.href='./index.html';">Log Out</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Add new data</h1>
+
+  <form id="dataForm">
+    <label for="date">
+      Date:
+      <input type="date" id="date" name="date" />
+    </label>
+
+    <label for="height">
+      Power Consumed (W)
+      <input type="number" id="power" name="power" step="0.1" />
+    </label>
+
+    <input type="submit" value="Create New Entry" />
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Power Consumed (W)</th>
+      </tr>
+    </thead>
+    <tbody id="dataTableBody">
+      <!-- Data rows will be inserted here -->
+    </tbody>
+  </table>
+
+
+  </main>
+
+  <button onclick="localStorage.removeItem('dataEntries'); updateTable()">Reset Data</button>
+
+
+  
+</body>
+
+<script>
+
+  const updateTable = () => {
+    const dataEntries = JSON.parse(localStorage.getItem('dataEntries')) || [];
+    const tableBody = document.getElementById('dataTableBody');
+    tableBody.innerHTML = '';
+    dataEntries.forEach(entry => {
+      const row = document.createElement('tr');
+      const dateCell = document.createElement('td');
+      dateCell.textContent = entry.date;
+      const powerCell = document.createElement('td');
+      powerCell.textContent = entry.power;
+      row.appendChild(dateCell);
+      row.appendChild(powerCell);
+      tableBody.appendChild(row);
+    });
+
+  }
+  document.querySelector('input[type="submit"]').onclick = (e) => {
+    e.preventDefault();
+    const date = document.getElementById('date').value;
+    const power = document.getElementById('power').value;
+    if(!date || !power) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if(localStorage.getItem('dataEntries') == null || localStorage.getItem('dataEntries') === ''){
+      localStorage.setItem('dataEntries', JSON.stringify([{date, power}]));
+    }else{
+      localStorage.setItem('dataEntries', JSON.stringify([...(JSON.parse(localStorage.getItem('dataEntries')) || []), {date, power}]));
+
+    }
+
+    document.getElementById('dataForm').reset();
+    updateTable()
+  };
+</script>
+</html>
