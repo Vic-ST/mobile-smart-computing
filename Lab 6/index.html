@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password</title>
+  <link rel="stylesheet" href="style.css">
+<script>
+  if(localStorage.getItem("authenticated") === "true") {
+    window.location.href = "./home.html";
+  }
+</script>
+</head>
+<body>
+
+  Please enter the password to access the projects:
+  <hr>
+  <form>
+    <input type="password" id="pwd" name="pwd" />
+    <input type="submit" value="Submit" />
+  </form>
+  
+  
+</body>
+<script>
+  document.querySelector('input[type="submit"]').onclick = () => {
+    const pwd = document.getElementById("pwd").value;
+    if(localStorage.getItem('password') === null) {
+      localStorage.setItem('password', 'admin');
+    }
+    if(pwd === localStorage.getItem('password')) {
+      localStorage.setItem("authenticated", "true");
+      window.location.href = "./home.html";
+    } else {
+      alert("Incorrect password. Please try again.");
+    }
+  }
+</script>
+</html>

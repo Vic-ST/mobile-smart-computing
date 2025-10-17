@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  window.onload = () => {
+    if(localStorage.getItem("authenticated") !== "true") {
+      window.location.href = "./index.html";
+    }
+  }
+</script>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+      <li> <span onclick="localStorage.setItem('authenticated', 'false'); window.location.href='./index.html';">Log Out</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Settings</h1>
+
+  <form id="settingsForm">
+    <label for="plantID">
+      Change the plant ID:
+      <input type="text" id="plantID" name="plantID" />
+    </label>
+
+    <label for="installDate">
+
+      Update the Installation date:
+      <input type="date" id="installDate" name="installDate" />
+    </label>
+
+
+    <input type="submit" value="Submit" />
+  </form>
+
+
+  </main>
+
+
+  
+</body>
+
+<script>
+  document.querySelector('input[type="submit"]').onclick = (e) => {
+    e.preventDefault();
+    const plantID = document.getElementById('plantID').value;
+    const installDate = document.getElementById('installDate').value;
+    if(plantID.length < 1) {
+      alert("Plant ID cannot be empty.");
+      return;
+    }
+    if(!installDate) {
+      alert("Please select a valid installation date.");
+      return;
+    }
+    localStorage.setItem("plantID", plantID);
+    localStorage.setItem("installDate", installDate);
+    alert("Settings updated successfully.");
+  };
+</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script src="RGraph.common.core.js"></script>
+<script src="RGraph.bar.js"></script> 
+<script>
+  window.onload = () => {
+    if(localStorage.getItem("authenticated") !== "true") {
+      window.location.href = "./index.html";
+    }
+
+
+    if(!localStorage.getItem('dataEntries') && localStorage.getItem('dataEntries') === null) {
+      alert("No data entries found. Please update data first.");
+      window.location.href = "./update.html";
+    }else{
+      let data = JSON.parse(localStorage.getItem('dataEntries')) 
+  
+      let bar = data.map(entry => entry.power);
+      let dates = data.map(entry => entry.date);
+
+
+
+      new RGraph.Bar({
+          id: 'cvs',
+          data: bar,
+          options: {
+              xaxisLabels: dates,
+              marginLeft: 35
+          }
+      }).draw();
+
+    }
+    
+  }
+</script>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+      <li> <span onclick="localStorage.setItem('authenticated', 'false'); window.location.href='./index.html';">Log Out</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Visualize</h1>
+
+    <p>Graph will go here</p>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+
+
+
+  </main>
+
+
+  
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  window.onload = () => {
+    if(localStorage.getItem("authenticated") !== "true") {
+      window.location.href = "./index.html";
+    }
+
+    let data = localStorage.getItem('dataEntries'); 
+  
+    if(data && data.length > 0) {
+      let wattage = JSON.parse(data).map(data => Number(data.power));
+      console.log(wattage.filter(power => power > 75).length > (wattage.length / 2))
+
+
+      if(wattage.some(power => power >= 100)) {
+        let li = document.createElement('li');
+        li.textContent = "Some major wattage spikes have been detected, try reducing power.";
+        document.querySelector('#recommendations').appendChild(li);
+      }
+
+      if(wattage.every(power => power < 50)) {
+        let li = document.createElement('li');
+        li.textContent = "All plants are operating efficiently at under 50 power.";
+        document.querySelector('#recommendations').appendChild(li);
+      }
+
+      if(wattage.filter(power => power > 60).length > (wattage.length / 2)) {
+        let li = document.createElement('li');
+        li.textContent = "More than half of the plants are consuming above 60 power, consider maintenance.";
+        document.querySelector('#recommendations').appendChild(li);
+      }
+
+      if(wattage.filter(power => power < 30).length > (wattage.length / 2)) {
+        let li = document.createElement('li');
+        li.textContent = "Majority of plants are consuming under 30 power, optimal performance.";
+        document.querySelector('#recommendations').appendChild(li);
+      }
+
+      let sumOfWatts = wattage.reduce((a, b) => a + b, 0);
+
+      let avgWattage = sumOfWatts / wattage.length;
+
+      if(avgWattage > 60) {
+        let li = document.createElement('li');
+        li.textContent = "Average wattage consumption is above 60, consider energy-saving measures.";
+        document.querySelector('#recommendations').appendChild(li);
+      }
+
+    } else {
+      console.log("No plant data found in localStorage.");
+    }
+
+
+  }
+</script>
+<body>
+
+  <nav id="headerNav">
+    <ul>
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./settings.html">Settings</a></li>
+      <li><a href="./update.html">Update Data</a></li>
+      <li><a href="./visualize.html">Visualize</a></li>
+      <li><a href="./recommendations.html">Recommendations</a></li>
+      <li> <span onclick="localStorage.setItem('authenticated', 'false'); window.location.href='./index.html';">Log Out</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-page">
+    <h1>Recommendations</h1>
+
+  
+    <ol id="recommendations">
+
+    </ol>
+
+
+  </main>
+
+
+  
+</body>
+</html>
